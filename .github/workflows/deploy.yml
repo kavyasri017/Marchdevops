@@ -1,12 +1,4 @@
 
-Sarath Chandran
-8:54 AM
-mkdir .github
-mkdir .github\workflows
-.github/workflows/deploy.yml
-
-Sarath Chandran
-8:56 AM
 name: Upload to S3
 
 on:
