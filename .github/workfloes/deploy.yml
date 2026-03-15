@@ -1,0 +1,31 @@
+Here’s a simple YAML (.yml) file example showing common elements like scalars, lists, nested objects, and comments.
+Yaml# Example YAML configuration file
+
+app:
+  name: MyApplication
+  version: 1.0.0
+  debug: true
+
+database:
+  host: localhost
+  port: 5432
+  username: admin
+  password: secret123
+  options:
+    pool_size: 10
+    timeout: 30
+
+features:
+  - authentication
+  - logging
+  - analytics
+
+users:
+  - name: Alice
+    role: admin
+    active: true
+  - name: Bob
+    role: user
+    active: false
+
+
