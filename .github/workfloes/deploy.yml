@@ -1,31 +1,25 @@
-Here’s a simple YAML (.yml) file example showing common elements like scalars, lists, nested objects, and comments.
-Yaml# Example YAML configuration file
+name: Upload to S3
 
-app:
-  name: MyApplication
-  version: 1.0.0
-  debug: true
+on:
+  push:
+    branches:
+      - main
 
-database:
-  host: localhost
-  port: 5432
-  username: admin
-  password: secret123
-  options:
-    pool_size: 10
-    timeout: 30
+jobs:
+  upload:
+    runs-on: ubuntu-latest
 
-features:
-  - authentication
-  - logging
-  - analytics
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-users:
-  - name: Alice
-    role: admin
-    active: true
-  - name: Bob
-    role: user
-    active: false
+    - name: Configure AWS
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
-
+    - name: Upload files to S3
+      run: |
+        aws s3 sync . s3://${{ secrets.S3_BUCKET }}/devclass --delete
